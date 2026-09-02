@@ -1,0 +1,6 @@
+{
+  "name": "notes-js-logic",
+  "type": "commonjs",
+  "private": true,
+  "_комментарий": "Нужен, чтобы `node устройство.js` работал: в корне репозитория объявлен type=module, а логика на устройстве -- это модуль в стиле CommonJS, потому что рантайм даёт ей module и exports."
+}
