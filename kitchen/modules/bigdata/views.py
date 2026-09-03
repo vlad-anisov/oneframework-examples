@@ -1,6 +1,6 @@
 """500 records: paging, infinite scroll and virtual list."""
 
-from oneframework import Button, Create, Delete, Filter, List, Row, Search, Sort, View
+from oneframework import Button, Create, Delete, Filter, List, Row, Search, Sort, View, expr
 
 from .models import Row_
 
@@ -23,7 +23,7 @@ class BigItem(View):
             record.code(widget="title"),
             record.region(widget="badge"),
             record.amount(),
-            Button(icon="delete", action=record.delete(), visible=~record.checked),
+            Button(icon="delete", action=record.delete(), visible=expr("!record.checked")),
         )
 
 
@@ -49,8 +49,8 @@ class BigData(View):
                 index=True,
                 search=Search(
                     record.code,
-                    Filter("Не проверено", ~record.checked, default=True),
-                    Filter("Север", record.region == "n"),
+                    Filter("Не проверено", expr("!record.checked"), default=True),
+                    Filter("Север", expr('record.region = "n"')),
                     # `section=True` -- заголовок раздела над строками. Он
                     # здесь не украшение: скребок (`index=True`) строит свою
                     # азбуку по заголовкам внутри списка, и без них ему нечего

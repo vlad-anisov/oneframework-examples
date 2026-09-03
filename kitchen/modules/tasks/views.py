@@ -3,6 +3,7 @@
 from oneframework import (
     Button, Col, Create, Delete, Filter, Group, List, Row, Search, Sort, Tab, Tabs, View,
     record,
+    expr,
 )
 
 from .models import Task
@@ -37,7 +38,7 @@ class TaskItem(View):
             record.title(widget="title"),
             record.state(widget="pill"),
             record.due(widget="text", visible=record.assignee.is_null()),
-            Button(icon="delete", action=record.delete(swipe=True), visible=~record.done),
+            Button(icon="delete", action=record.delete(swipe=True), visible=expr("!record.done")),
         )
 
 
@@ -91,9 +92,9 @@ class Board(View):
                 page_size=20,
                 search=Search(
                     record.title,
-                    Filter("Открытые", ~record.done, default=True),
+                    Filter("Открытые", expr("!record.done"), default=True),
                     Filter("Готовые", record.done),
-                    Filter("Срочные", record.priority >= 4),
+                    Filter("Срочные", expr("record.priority >= 4")),
                     Sort("Вручную", record.sequence, default=True),
                     Sort("По сроку", record.due),
                     Sort("Сначала новые", record.created_at.desc()),

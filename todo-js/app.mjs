@@ -12,6 +12,7 @@
 import {
   Button, Filter, List, Row, Screen, Search, Sort, app, boolean, color, integer,
   many2one, model, string, text, view,
+  expr,
 } from "oneframework";
 
 const Tag = model("Tag", {
@@ -66,10 +67,10 @@ const Todo = view("Todo", {
     List(TodoLine, {
       item: TodoLineItem,
       open: TodoLineDetail,
-      domain: record.tag.eq(view_.tag),
+      domain: expr("record.tag = view.tag"),
       search: Search(
         record.text,
-        Filter("Осталось", record.completed.not(), { default: true }),
+        Filter("Осталось", expr("!record.completed"), { default: true }),
         Filter("Выполнено", record.completed),
         Sort("По порядку", record.sequence, { default: true }),
         Sort("Сначала новые", record.created_at.desc()),

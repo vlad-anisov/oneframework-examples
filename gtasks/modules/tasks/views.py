@@ -19,6 +19,7 @@
 """
 
 from oneframework import *
+from oneframework import expr
 from .models import Board, Task
 
 
@@ -59,10 +60,10 @@ class TaskRow(View):
         return Row(
             record.sequence(widget="handle", visible=False),
             record.done(widget="checkbox", icon="check_circle", icon_off="radio_button_unchecked"),
-            Col(record.title(widget="title", wrap=True), record.details(widget="subtitle", wrap=True, visible=~record.done)),
-            record.date(widget="title", visible=~record.done),
+            Col(record.title(widget="title", wrap=True), record.details(widget="subtitle", wrap=True, visible=expr("!record.done"))),
+            record.date(widget="title", visible=expr("!record.done")),
             record.finished(widget="title", visible=record.done),
-            record.starred(widget="checkbox", icon="star", icon_off="star_border", place="after", visible=~record.done),
+            record.starred(widget="checkbox", icon="star", icon_off="star_border", place="after", visible=expr("!record.done")),
             Button(icon="delete", action=Delete(confirm="Удалить задачу?"), place="after", visible=record.done),
         )
 
@@ -149,7 +150,7 @@ class Tasks(View):
                     label="Помеченная",
                     row_height=72,
                     empty=("Помеченных задач нет", "Отметьте задачу звёздочкой, чтобы она была здесь"),
-                    domain=record.starred & ~record.done,
+                    domain=expr("record.starred & !record.done"),
                     search=Search(
                         Sort("Недавно отмеченные", record.updated_at.desc(), default=True),
                         Sort("Дата", record.created_at.desc()),
@@ -162,7 +163,7 @@ class Tasks(View):
                 Board,
                 Tab(
                     "{item.name}",
-                    Pill(Count(Task, (record.board == item.id) & ~record.done), when="closed"),
+                    Pill(expr("count(Task, record.board = item.id & !record.done)"), when="closed"),
                     Button(place="fab", action=Task.create(open=TaskDraftCard, draft=True, target="sheet", values={"board": item.id})),
                     List(
                         Task,
@@ -177,12 +178,12 @@ class Tasks(View):
                             Button(
                                 "Удалить все выполненные задачи",
                                 action=Task.search(
-                                    (record.board == item.id) & record.done,
+                                    expr("record.board = item.id & record.done"),
                                 ).delete(confirm="Удалить все выполненные задачи?"),
-                                enabled=Exists(Task, (record.board == item.id) & record.done),
+                                enabled=expr("exists(Task, record.board = item.id & record.done)"),
                             ),
                         ),
-                        domain=(record.board == item.id) & ~record.done,
+                        domain=expr("record.board = item.id & !record.done"),
                         search=Search(
                             Sort("В моем порядке", record.sequence, default=True),
                             Sort("Дата", record.created_at.desc()),
@@ -196,11 +197,11 @@ class Tasks(View):
                             Task,
                             item=TaskRow,
                             open=TaskCard,
-                            domain=(record.board == item.id) & record.done,
+                            domain=expr("record.board = item.id & record.done"),
                             order=[record.finished.desc(), record.updated_at.desc()],
                         ),
                         label="Выполненные",
-                        visible=Exists(Task, (record.board == item.id) & record.done),
+                        visible=expr("exists(Task, record.board = item.id & record.done)"),
                     ),
                 ),
             ),

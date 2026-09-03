@@ -5,6 +5,7 @@ from oneframework import (
 )
 
 from .models import Product
+from oneframework import expr
 
 
 class ProductItem(View):
@@ -59,7 +60,7 @@ class Catalog(View):
                 search=Search(
                     record.name,
                     Filter("В продаже", record.active, default=True),
-                    Filter("Заканчивается", record.stock < 10),
+                    Filter("Заканчивается", expr("record.stock < 10")),
                     Sort("По названию", record.name, default=True),
                     Sort("Дороже сначала", record.price.desc()),
                     Sort("Остаток", record.stock),

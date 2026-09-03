@@ -1,5 +1,5 @@
 from oneframework import (
-    Button, Create, Delete, Filter, Group, List, Row, Search, Sort, View,
+    Button, Create, Delete, Filter, Group, List, Row, Search, Sort, View, expr,
 )
 
 from .models import Task
@@ -40,7 +40,7 @@ class Board(View):
                 open=TaskDetail,
                 search=Search(
                     record.title,
-                    Filter("Open", ~record.done, default=True),
+                    Filter("Open", expr("!record.done"), default=True),
                     Filter("Done", record.done),
                     Sort("Manual", record.sequence, default=True),
                     Sort("Due first", record.due),

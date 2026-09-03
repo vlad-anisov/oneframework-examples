@@ -3,7 +3,7 @@ all actually engage."""
 
 from oneframework import (
     App, Boolean, Button, Create, Delete, Filter, Integer, List, Model, Row, Search, Sort,
-    String, View,
+    String, View, expr,
 )
 
 
@@ -49,7 +49,7 @@ class Big(View):
                 page_size=100,
                 search=Search(
                     record.label,
-                    Filter("Open", ~record.done, default=True),
+                    Filter("Open", expr("!record.done"), default=True),
                     Sort("Manual", record.position, default=True),
                     Sort("Newest", record.created_at.desc()),
                 ),

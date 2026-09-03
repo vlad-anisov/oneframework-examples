@@ -45,7 +45,7 @@ python3 -m pytest tests/test_three_languages.py -q
 каждого языка умеет его напечатать, сборка умеет его прочитать. Посмотреть:
 
 ```bash
-python3 -m oneframework.cli.main declare examples/notes-kotlin/App.kt
+npx oneframework declare examples/notes-kotlin/App.kt
 ```
 
 То же самое у остальных двух — `npx oneframework declare app.mjs` и `main()`
@@ -55,7 +55,7 @@ python3 -m oneframework.cli.main declare examples/notes-kotlin/App.kt
 
 ```bash
 KOTLIN_HOME=/путь/к/kotlinc \
-  python3 -m oneframework.cli.main build web examples/notes-kotlin/App.kt
+  npx oneframework build web examples/notes-kotlin/App.kt
 ```
 
 Разработчику на JavaScript питон писать не нужно, но поставить — нужно:

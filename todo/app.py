@@ -1,6 +1,7 @@
 from oneframework import (
     App, Boolean, Button, Color, Create, Delete, Filter, Integer, List, Many2one,
     Model, Row, Search, Sort, String, Text, View, view,
+    expr,
 )
 
 
@@ -60,11 +61,11 @@ class Todo(View):
                 TodoLine,
                 item=TodoLineItem,
                 open=TodoLineDetail,
-                domain=record.tag == view.tag,
+                domain=expr("record.tag = view.tag"),
 
                 search=Search(
                     record.text,
-                    Filter("Осталось", ~record.completed, default=True),
+                    Filter("Осталось", expr("!record.completed"), default=True),
                     Filter("Выполнено", record.completed),
                     Sort("По порядку", record.sequence, default=True),
                     Sort("Сначала новые", record.created_at.desc()),

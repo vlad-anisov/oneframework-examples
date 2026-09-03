@@ -8,6 +8,7 @@ Nothing here is Todo-specific -- different models, field names and labels.
 from oneframework import (
     App, Boolean, Button, Color, Create, Date, Delete, Filter, Integer, List, Many2one, Model,
     Row, Search, Sort, String, Text, View, view,
+    expr,
 )
 
 
@@ -92,7 +93,7 @@ class Workspace(View):
                 Task,
                 item=TaskItem,
                 open=TaskDetail,
-                domain=record.project == view.project,
+                domain=expr("record.project = view.project"),
                 page_size=20,
                 search=Search(
                     record.summary,
