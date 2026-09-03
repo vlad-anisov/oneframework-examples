@@ -4,8 +4,8 @@
 превратилось:
 
 * цикл по спискам ``for board in Board.all()``  -> ``Repeat(Board, Tab(...))``
-* подсчёт незавершённых заранее                 -> ``Count(Task, ...)``
-* ``if`` вокруг блока «Выполненные»             -> ``visible=Exists(...)``
+* подсчёт незавершённых заранее                 -> ``expr("count(Task, ...)")``
+* ``if`` вокруг блока «Выполненные»             -> ``visible=expr("exists(...)")``
 * ``if state.get("details_shown")``             -> ``visible=view.details_shown``
 * f-строка с именем списка                      -> ``"{item.name}"``
 * список номеров выполненных задач              -> ``Task.search(...).delete()``
