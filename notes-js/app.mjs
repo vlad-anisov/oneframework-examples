@@ -11,7 +11,7 @@
  * * `notes-kotlin` -- на сборке получается **скомпилированный модуль** `.wasm`.
  *
  * Одинаковы они не на глаз: объявления всех трёх дают побайтово одни и те же
- * документы моделей и видов, и это закреплено `tests/test_three_languages.py`.
+ * документы моделей и видов, и это закреплено `tests/together/test_three_languages.py`.
  *
  *     npx oneframework build web examples/notes-js/app.mjs
  */

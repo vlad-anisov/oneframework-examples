@@ -28,7 +28,7 @@
 скомпилированным модулем, а не исходником, — на устройство едет он.
 
 ```bash
-python3 -m pytest tests/test_three_languages.py -q
+python3 -m pytest tests/together/test_three_languages.py -q
 ```
 
 Различаются у них только название и цвет — этим их и отличают на устройстве.

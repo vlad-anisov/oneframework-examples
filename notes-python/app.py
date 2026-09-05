@@ -11,7 +11,7 @@
   и он инстанцируется как машинный код.
 
 Одинаковы они не на глаз: объявления всех трёх дают побайтово одни и те же
-документы моделей и видов, и это закреплено `tests/test_three_languages.py`.
+документы моделей и видов, и это закреплено `tests/together/test_three_languages.py`.
 
     oneframework build web examples/notes-python/app.py
 """
@@ -36,7 +36,7 @@ class Note(Model):
         сами.
 
         Считает ровно то же, что два других приложения, и теми же словами:
-        одинаковость тройки проверяется прогоном (`tests/test_three_languages`),
+        одинаковость тройки проверяется прогоном (`tests/together/test_three_languages`),
         а не обещанием в README.
 
         Слова режет **сторонний** `python-slugify` -- пакет с PyPI, приехавший
