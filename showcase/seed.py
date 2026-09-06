@@ -10,7 +10,6 @@ TASKS = [
     ("Write release notes", "Short and factual", "Website", False, 2, 75, None),
 ]
 
-
 def seed(db):
     ids = {name: db.create(Project, {"name": name, "color": color})
            for name, color in PROJECTS}

@@ -27,9 +27,7 @@ from oneframework import (
     Url,
 )
 
-
 class Sample(Model):
-    # text
     title = String("Char", required=True)
     notes = Text("Text")
     article = Html("Html")
@@ -39,7 +37,6 @@ class Sample(Model):
     site = Url("Url")
     sku = Barcode("Barcode")
 
-    # numeric
     count = Integer("Integer")
     ratio = Float("Float")
     price = Monetary("Monetary", currency="€")
@@ -47,7 +44,6 @@ class Sample(Model):
     spent = Duration("Duration")
     stars = Rating("Rating", maximum=5)
 
-    # other scalars
     active = Boolean("Boolean")
     state = Selection(
         [("draft", "Черновик"), ("review", "На проверке"), ("done", "Готово")],
@@ -56,15 +52,12 @@ class Sample(Model):
     )
     accent = Color("Color")
 
-    # temporal
     due = Date("Date")
     at = Time("Time")
     stamp = Datetime("Datetime")
 
-    # binary
     photo = Image("Image")
     attachment = Binary("Binary")
     sign = Image("Signature")
 
-    # geo
     place = GeoPoint("GeoPoint")

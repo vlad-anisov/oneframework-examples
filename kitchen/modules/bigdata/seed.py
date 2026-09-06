@@ -4,7 +4,6 @@ from bigdata.models import Row_
 
 REGIONS = ["n", "s", "e", "w"]
 
-
 def seed(db):
     rng = random.Random(11082026)
     for index in range(500):

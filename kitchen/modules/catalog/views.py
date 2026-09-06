@@ -7,19 +7,16 @@ from oneframework import (
 from .models import Product
 from oneframework import expr
 
-
 class ProductItem(View):
     model = Product
 
     def ui(self, record):
-        #: a phone row shows what fits on a phone
         return Row(
             record.name(widget="title"),
             record.kind(widget="badge"),
             record.rating(),
             Button(icon="delete", action=record.delete()),
         )
-
 
 class ProductDetail(View):
     model = Product
@@ -28,16 +25,14 @@ class ProductDetail(View):
         return (
             Group(record.name(), record.sku(), record.kind(widget="radio"),
                   label="Что это"),
-            # two columns once the window is wide enough -- Framework7's own grid
+            # two columns once the window is wide enough -- Framework7's own
+            # grid
             Group(record.price(), record.stock(widget="stepper"),
                   record.rating(), record.active(), label="Продажа", cols=2),
             Button("Удалить", action=record.delete()),
         )
 
-
 class Catalog(View):
-    """A phone sees rows; a window wide enough sees the whole record."""
-
     def ui(self, record):
         return (
             Button(place="fab", action=Product.create(open=ProductDetail)),
@@ -46,7 +41,6 @@ class Catalog(View):
                 item=ProductItem,
                 open=ProductDetail,
                 display="table",
-                # ...and the table, where there is room, shows the whole record
                 columns=(
                     record.name(widget="title"),
                     record.sku(),

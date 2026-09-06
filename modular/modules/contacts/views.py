@@ -4,7 +4,6 @@ from oneframework import (
 
 from .models import Person
 
-
 class PersonItem(View):
     model = Person
 
@@ -14,7 +13,6 @@ class PersonItem(View):
             record.company(widget="tag"),
             Button(icon="delete", action=record.delete(swipe=True)),
         )
-
 
 class PersonDetail(View):
     model = Person
@@ -35,7 +33,6 @@ class PersonDetail(View):
             ),
             Button("Delete", action=record.delete()),
         )
-
 
 class ContactsBoard(View):
     def ui(self, record):

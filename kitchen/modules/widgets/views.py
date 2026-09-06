@@ -1,9 +1,4 @@
-"""Every field type, and every widget each of them offers, on tappable tabs.
-
-The point of this screen is that a field renders differently only because the
-DSL asked for a different `widget=` -- the model, the storage and the runtime
-are the same for all of them.
-"""
+"""Every field type, and every widget each of them offers, on tappable tabs."""
 
 from oneframework import (
     Accordion, Button, Col, Create, Delete, Group, List, Row, Search, Section, Sort, Tab, Tabs,
@@ -12,22 +7,20 @@ from oneframework import (
 
 from .models import Sample
 
-
 class SampleItem(View):
     model = Sample
 
     def ui(self, record):
         return Row(
             #: Boolean без widget= в строке -- это маленький флажок Framework7,
-            #: единственный вид, которого на этом экране до сих пор не было:
-            #: в форме тот же самый Boolean занимает строку целиком.
+            #: единственный вид, которого на этом экране до сих пор не было: в
+            #: форме тот же самый Boolean занимает строку целиком.
             record.active(),
             record.title(widget="title"),
             record.state(widget="badge"),
             record.stars(widget="stepper"),
             Button(icon="delete", action=record.delete(swipe=True)),
         )
-
 
 class SampleDetail(View):
     model = Sample
@@ -129,9 +122,7 @@ class SampleDetail(View):
             ),
         )
 
-
 class Widgets(View):
-
     def ui(self, record):
         return (
             Button(place="fab", action=Sample.create(open=SampleDetail)),

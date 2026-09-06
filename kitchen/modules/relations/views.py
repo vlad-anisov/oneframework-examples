@@ -6,7 +6,6 @@ from oneframework import (
 
 from .models import Contact, Note
 
-
 class ContactItem(View):
     model = Contact
 
@@ -18,7 +17,6 @@ class ContactItem(View):
             Button(icon="delete", action=record.delete(swipe=True)),
         )
 
-
 class NoteItem(View):
     model = Note
 
@@ -26,10 +24,8 @@ class NoteItem(View):
         return Row(record.text(widget="title"),
                    Button(icon="delete", action=record.delete()))
 
-
 class NoteEntry(View):
     """First cell is the moment, the rest is the entry -- Timeline's own split."""
-
     model = Note
 
     def ui(self, record):
@@ -39,18 +35,15 @@ class NoteEntry(View):
             Button(icon="delete", action=record.delete()),
         )
 
-
 class NoteDetail(View):
     model = Note
-    # Заметка открывается из ленты на том же экране, и путь к ней весь
-    # состоит из этого экрана. Стоит рядом с ContactDetail, который
-    # промолчал: две половины признака видны на одной витрине.
+    # Заметка открывается из ленты на том же экране, и путь к ней весь состоит
+    # из этого экрана.
     crumbs = False
 
     def ui(self, record):
         return (record.text(), record.body(widget="textarea"), record.contact(),
                 Button("Удалить", action=record.delete()))
-
 
 class ContactDetail(View):
     model = Contact
@@ -73,9 +66,6 @@ class ContactDetail(View):
                 ),
                 record.skills(widget="chips"),
                 record.skills(widget="tags"),
-                # Единственное на витрине «выбери несколько». Без него ветка
-                # правила «лист, а не меню» ничем не рисуется, и проверить её
-                # пальцем было бы не на чем.
                 record.skills(widget="list"),
                 Group(record.notes(widget="count"),
                       label="Заметки (один-ко-многим)"),
@@ -83,9 +73,7 @@ class ContactDetail(View):
             Tab("Опасное", Button("Удалить контакт", action=record.delete())),
         )
 
-
 class Contacts(View):
-
     def ui(self, record):
         return (
             Button(place="fab", action=Contact.create(open=ContactDetail)),

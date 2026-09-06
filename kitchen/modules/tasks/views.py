@@ -8,30 +8,20 @@ from oneframework import (
 
 from .models import Task
 
-
 class TaskItem(View):
     model = Task
 
     def ui(self, record):
-        #: drag handle + toggle + title + a custom widget from static/widgets.js,
-        #: and a Delete that is also a swipe gesture
-        #:
-        #: Два ``visible=`` здесь стоят намеренно, и они разные -- это
-        #: единственное место в примерах, где условие про запись вообще
-        #: написано, а без него **обе дороги строки не исполняются ни разу**:
-        #:
-        #: * ``~record.done`` -- условие про булево поле с умолчанием, и оно
-        #:   становится колонкой ``CASE WHEN`` в том же SELECT
-        #:   (``session.py:_condition_column``): весь список отвечает одним
-        #:   запросом;
-        #: * ``record.assignee.is_null()`` -- условие про связь, у которой
-        #:   умолчания нет, а значит она бывает NULL, а NULL -- ни истина, ни
-        #:   ложь. Колонкой такое не считается, и остаётся единственная дорога:
-        #:   ``evaluate()`` по записи, **на каждую строку и на каждый слот**.
-        #:
-        #: Вторая дорога -- та самая, которую нельзя мерить на пустом месте:
-        #: перенос вычислителя за границу WASM упирается в неё, и пока условия
-        #: не написано, замер показывал бы ноль вызовов.
+        #: drag handle + toggle + title + a custom widget from
+        #: static/widgets.js, and a Delete that is also a swipe gesture Два
+        #: ``visible=`` здесь стоят намеренно, и они разные -- это единственное
+        #: место в примерах, где условие про запись вообще написано, а без него
+        #: **обе дороги строки не исполняются ни разу**: * ``~record.done`` --
+        #: условие про булево поле с умолчанием, и оно становится колонкой
+        #: ``CASE WHEN`` в том же SELECT (``session.py:_condition_column``):
+        #: весь список отвечает одним запросом; * ``record.assignee.is_null()``
+        #: -- условие про связь, у которой умолчания нет, а значит она бывает
+        #: NULL, а NULL -- ни истина, ни ложь.
         return Row(
             record.sequence(widget="handle"),
             record.done(widget="toggle"),
@@ -40,7 +30,6 @@ class TaskItem(View):
             record.due(widget="text", visible=record.assignee.is_null()),
             Button(icon="delete", action=record.delete(swipe=True), visible=expr("!record.done")),
         )
-
 
 class TaskDetail(View):
     model = Task
@@ -78,10 +67,7 @@ class TaskDetail(View):
             ),
         )
 
-
 class Board(View):
-    """The list itself: search, filters, sorts, manual order, paging."""
-
     def ui(self, record):
         return (
             Button(place="fab", action=Task.create(open=TaskDetail)),

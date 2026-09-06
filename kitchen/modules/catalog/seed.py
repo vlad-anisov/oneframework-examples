@@ -9,7 +9,6 @@ NAMES = [
 ]
 KINDS = ["tool", "part", "kit"]
 
-
 def seed(db):
     rng = random.Random(20260811)
     for index, name in enumerate(NAMES):

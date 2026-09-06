@@ -4,11 +4,9 @@ from oneframework import (
     expr,
 )
 
-
 class Tag(Model):
     name = String("Название", required=True)
     color = Color("Цвет")
-
 
 class TodoLine(Model):
     text = String("Задача", required=True)
@@ -16,7 +14,6 @@ class TodoLine(Model):
     tag = Many2one(Tag, "Тег")
     completed = Boolean("Выполнено")
     sequence = Integer()
-
 
 class TodoLineItem(View):
     model = TodoLine
@@ -30,12 +27,11 @@ class TodoLineItem(View):
             Button(icon="delete", action=record.delete()),
         )
 
-
 class TodoLineDetail(View):
     model = TodoLine
-    # Карточка -- работа, а не шаг пути: путь сюда весь состоит из списка,
-    # из которого пришли, и цепочка из двух звеньев повторила бы стрелку
-    # «назад» в том же баре.
+    # Карточка -- работа, а не шаг пути: путь сюда весь состоит из списка, из
+    # которого пришли, и цепочка из двух звеньев повторила бы стрелку «назад» в
+    # том же баре.
     crumbs = False
 
     def ui(self, record):
@@ -46,7 +42,6 @@ class TodoLineDetail(View):
             record.completed(),
             Button("Удалить", action=record.delete()),
         )
-
 
 class Todo(View):
     tag = Many2one(Tag, "Тег")
@@ -72,6 +67,5 @@ class Todo(View):
                 ),
             ),
         )
-
 
 app = App(Todo)

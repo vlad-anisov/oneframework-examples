@@ -14,16 +14,13 @@ from oneframework import (
     Text,
 )
 
-
 class Person(Model):
     name = String("Имя", required=True)
     email = String("Почта")
 
-
 class Label(Model):
     name = String("Метка", required=True)
     color = Color("Цвет")
-
 
 class Task(Model):
     title = String("Задача", required=True)

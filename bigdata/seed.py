@@ -2,7 +2,6 @@
 
 from app import Entry
 
-
 def seed(db):
     for i in range(1, 501):
         db.create(Entry, {

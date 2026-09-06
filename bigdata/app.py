@@ -1,18 +1,15 @@
-"""Stress app: enough records that paging, infinite scroll and virtual list
-all actually engage."""
+"""Stress app: enough records that paging, infinite scroll and virtual list all actually engage."""
 
 from oneframework import (
     App, Boolean, Button, Create, Delete, Filter, Integer, List, Model, Row, Search, Sort,
     String, View, expr,
 )
 
-
 class Entry(Model):
     label = String("Label", required=True)
     done = Boolean("Done")
     weight = Integer("Weight")
     position = Integer()
-
 
 class EntryItem(View):
     model = Entry
@@ -25,7 +22,6 @@ class EntryItem(View):
             Button(icon="delete", action=record.delete(swipe=True)),
         )
 
-
 class EntryDetail(View):
     model = Entry
 
@@ -36,7 +32,6 @@ class EntryDetail(View):
             record.done(),
             Button("Delete", action=record.delete()),
         )
-
 
 class Big(View):
     def ui(self, record):
@@ -55,6 +50,5 @@ class Big(View):
                 ),
             ),
         )
-
 
 app = App(Big, title="Bigdata", color="#8E4585")

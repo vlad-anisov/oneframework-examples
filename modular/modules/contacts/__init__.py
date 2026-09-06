@@ -7,5 +7,4 @@ from .views import ContactsBoard, PersonDetail, PersonItem
 
 __all__ = ["Company", "Person", "ContactsBoard", "PersonDetail", "PersonItem"]
 
-#: installing the module is what puts this section in the navigation
 SCREEN = Screen(ContactsBoard, label="Контакты", icon="group")

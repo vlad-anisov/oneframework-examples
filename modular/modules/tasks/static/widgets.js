@@ -1,6 +1,6 @@
 // A module's own widget, registered under "<field type>:<widget>" -- the same
-// convention the built-ins use, so `state(widget="pill")` works in the DSL with
-// no framework change. The file is discovered because it sits in static/.
+// convention the built-ins use, so `state(widget="pill")` works in the DSL
+// with no framework change.
 oneframework.registerWidget("selection:pill", {
   create(node) {
     const el = document.createElement("span");

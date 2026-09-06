@@ -4,7 +4,6 @@ from oneframework import (
 
 from .models import Task
 
-
 class TaskItem(View):
     model = Task
 
@@ -17,7 +16,6 @@ class TaskItem(View):
             Button(icon="delete", action=record.delete()),
         )
 
-
 class TaskDetail(View):
     model = Task
 
@@ -28,7 +26,6 @@ class TaskDetail(View):
             record.done(),
             Button("Delete", action=record.delete()),
         )
-
 
 class Board(View):
     def ui(self, record):

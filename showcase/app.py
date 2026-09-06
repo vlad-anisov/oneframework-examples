@@ -11,11 +11,9 @@ from oneframework import (
     expr,
 )
 
-
 class Project(Model):
     name = String("Project", required=True)
     color = Color("Colour")
-
 
 class Task(Model):
     summary = String("Summary", required=True)
@@ -27,7 +25,6 @@ class Task(Model):
     due = Date("Due date")
     rank = Integer()
 
-
 class ProjectItem(View):
     model = Project
 
@@ -38,7 +35,6 @@ class ProjectItem(View):
             Button(icon="delete", action=record.delete()),
         )
 
-
 class ProjectDetail(View):
     model = Project
 
@@ -48,7 +44,6 @@ class ProjectDetail(View):
             record.color(),                           # ColorPicker
             Button("Delete project", action=record.delete()),
         )
-
 
 class TaskItem(View):
     model = Task
@@ -61,7 +56,6 @@ class TaskItem(View):
             record.project(widget="tag"),
             Button(icon="delete", action=record.delete(swipe=True)),
         )
-
 
 class TaskDetail(View):
     model = Task
@@ -77,7 +71,6 @@ class TaskDetail(View):
             record.urgent(),
             Button("Delete task", action=record.delete()),
         )
-
 
 class Workspace(View):
     project = Many2one(Project, "Project")
@@ -103,6 +96,5 @@ class Workspace(View):
                 ),
             ),
         )
-
 
 app = App(Workspace, title="Showcase", color="#386A20")

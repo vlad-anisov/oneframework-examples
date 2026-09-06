@@ -1,9 +1,4 @@
-"""Sample data for the Todo demo.
-
-Seeding is app-specific, so it lives next to ``app.py`` rather than inside the
-framework. oneframework runs ``seed(db)`` exactly once, the first time an app starts
-against an empty database, and records a marker so it never runs again.
-"""
+"""Sample data for the Todo demo."""
 
 from app import Tag, TodoLine
 
@@ -22,7 +17,6 @@ LINES = [
     ("Записаться к врачу", "", "Личное", False),
     ("Прочитать книгу", "Осталось две главы", "Учёба", True),
 ]
-
 
 def seed(db):
     tag_ids = {}

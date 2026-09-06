@@ -1,13 +1,4 @@
-/**
- * Тот же todo, что `examples/todo/app.py`, -- на JavaScript.
- *
- * Существует ради одного: приложение, на котором написана половина проверок
- * рантайма, объявлялось только питоном, и проверки поэтому оставались на нём.
- * Объявления двух этих файлов дают **побайтово одинаковые** документы -- это и
- * есть смысл пары, и это закреплено `tests/js/todo-parity.test.mjs`.
- *
- *     npx oneframework build web examples/todo-js/app.mjs
- */
+/** Тот же todo, что `examples/todo/app.py`, -- на JavaScript. */
 
 import {
   Button, Filter, List, Row, Screen, Search, Sort, app, boolean, color, integer,

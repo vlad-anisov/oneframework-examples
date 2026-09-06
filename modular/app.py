@@ -1,8 +1,4 @@
-"""Entry point: load every module folder, then start.
-
-There is no manifest and no install state -- a folder with an __init__.py is
-a module, and that is the whole rule.
-"""
+"""Entry point: load every module folder, then start."""
 
 from pathlib import Path
 

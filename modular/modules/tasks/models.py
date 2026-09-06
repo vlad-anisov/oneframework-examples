@@ -1,7 +1,6 @@
 from contacts.models import Person          # another module's model
 from oneframework import Boolean, Date, Integer, Many2one, Model, Rating, Selection, String
 
-
 class Task(Model):
     title = String("Task", required=True)
     state = Selection(

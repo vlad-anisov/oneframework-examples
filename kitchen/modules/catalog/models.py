@@ -1,6 +1,5 @@
 from oneframework import Boolean, Integer, Model, Monetary, Rating, Selection, String
 
-
 class Product(Model):
     name = String("Товар", required=True)
     sku = String("Артикул")

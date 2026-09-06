@@ -30,7 +30,6 @@ SAMPLES = [
     {"title": "Пустой образец", "state": "draft"},
 ]
 
-
 def seed(db):
     for values in SAMPLES:
         db.create(Sample, values)

@@ -1,9 +1,4 @@
-"""Kitchen sink: every component the framework offers, in one installable app.
-
-There is no manifest and no install list -- each folder under `modules/` is a
-module, and each module that declares a SCREEN adds a section to the
-navigation. Delete a folder and the section is gone.
-"""
+"""Kitchen sink: every component the framework offers, in one installable app."""
 
 from pathlib import Path
 

@@ -2,7 +2,6 @@ from contacts.models import Person
 
 from .models import Task
 
-
 def seed(db):
     people = db.all(Person)
     ann = people[0]["id"] if people else None

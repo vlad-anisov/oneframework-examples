@@ -16,7 +16,6 @@ TASKS = [
     ("Обновить README", "todo", 1, 0, 30, None, False),
 ]
 
-
 def seed(db):
     people = [db.create(Person, {"name": n, "email": e}) for n, e in PEOPLE]
     labels = [db.create(Label, {"name": n, "color": c}) for n, c in LABELS]

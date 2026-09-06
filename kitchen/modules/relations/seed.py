@@ -3,7 +3,6 @@ from relations.models import Company, Contact, Note, Passport, Skill
 SKILLS = [("Python", "#3776AB"), ("SQL", "#00758F"), ("UI", "#B58392"),
           ("Android", "#3DDC84")]
 
-
 def seed(db):
     acme = db.create(Company, {"name": "Acme", "site": "acme.example"})
     globex = db.create(Company, {"name": "Globex", "site": "globex.example"})

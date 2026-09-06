@@ -2,7 +2,6 @@
 
 from app import Category, Profile, Sample
 
-
 def seed(db):
     work = db.create(Category, {"name": "Work", "color": "#1565c0"})
     db.create(Category, {"name": "Home", "color": "#2e7d32"})
